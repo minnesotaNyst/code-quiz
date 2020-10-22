@@ -8,14 +8,16 @@
 </head>
 <body>
 
-   
     <div class="main-container"> 
         
         <!-- this is the header of the document where there will be a link to the highscores and a timer for the questions -->
         <header class="header-row">
-            <div class="center-header">
-                <a href="#">View HighScores</a>
+            <!-- this is a link to the high scores page where you can view saved data -->
+            <div class="view-highscores">
+                <a href="#">View Highscores</a>
             </div>
+
+            <!-- this is the timer element that will be used for the quiz -->
             <div class="timer">
                 Timer: <span id="time">0</span> 
             </div>
@@ -24,37 +26,44 @@
         
         <!-- this is the intro section to the challenge -->
         <section id="title-intro" class="show">
-            <div class="center-header">
-                <h1>Coding Quiz Challenge</h1>
-            </div>
-            <div>
-                <p>Welcome to the coding challenge quiz. You will have 75 seconds to answer the questions and there will be a 'x' second pentaly for getting the answer wrong. Your high score will be equivalent to the number of seconds you have remaining after you have completed the quiz. Use the "Start Quiz" button below to begin!</p>
-            </div>
-            <div>
-                <button id="startButton">Start Quiz</button>
+            <div class="center-content">
+                <div class="center-header">
+                    <h1>Coding Quiz Challenge</h1>
+                </div>
+                <div>
+                    <p>Welcome to the coding challenge quiz. You will have 75 seconds to answer the questions and there will be a 'x' second pentaly for getting the answer wrong. Your high score will be equivalent to the number of seconds you have remaining after you have completed the quiz. Use the "Start Quiz" button below to begin!</p>
+                </div>
+                <div>
+                    <button id="startButton">Start Quiz</button>
+                </div>
             </div>
         </section>
 
         <!-- this is the section where the quiz content and questions will live -->
         <section id="quiz-content" class="hide">
-            <div class="center-header">
-                <h1>Quiz Content</h1>
+            <div class="center-content">
+                <div class="center-header">
+                    <h1>Quiz Content</h1>
+                </div>
             </div>
         </section>
         
         <!-- this is the section where the final score will live -->
         <section id="final-score" class="hide">
-            <div class="center-header">
-                <h2>Thanks for playing!</h2>
-                <h3>Your final score is <span id="final-score">0</span></h3>
-                <br>
-                <label for="initials-area">Enter Initials:</label>
-                <input type="text" name="initials-area" maxlength="4" id="initials">
-                <button id="submit-button" type="submit">Submit</button>
-
+            <div class="center-content">
+                <div class="center-header">
+                    <h2>Thanks for playing!</h2>
+                    <h3>Your final score is <span id="final-score">0</span></h3>
+                    <br>
+                    <label for="initials-area">Enter Initials:</label>
+                    <input type="text" name="initials-area" maxlength="4" id="initials">
+                    <button id="submit-button" type="submit">Submit</button>
+                </div>
             </div>
         </section>
         <br>
+
+        <!-- this is the footer of the page -->
         <footer>
             &copy;2020 by Jake William
         </footer>
