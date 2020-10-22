@@ -29,6 +29,7 @@ header a {
 /* ----STYLE THE SECTIONS */
 section {
 	text-align: center;
+	height: 1000px;
 }
 .center-content {
 	background-color: whitesmoke;
@@ -45,6 +46,12 @@ div {
 
 .header-center {
 	text-align: center;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: block;
 }
 /* STYLE THE SECTIONS ENDS */
 
