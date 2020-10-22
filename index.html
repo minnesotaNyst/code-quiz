@@ -3,27 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Coding Quiz</title>
 </head>
 <body>
-    <div class="main-container">
+
+   
+    <div class="main-container"> 
+        
+        <!-- this is the header of the document where there will be a link to the highscores and a timer for the questions -->
         <header class="header-row">
-            <div class="page-title">
-
+            <div class="center-header">
+                <a href="#">View HighScores</a>
             </div>
-            <div class="">
-
+            <div class="timer">
+                Timer: <span id="time">0</span> 
             </div>
+
         </header>
         
-        <section>
+        <!-- this is the intro section to the challenge -->
+        <section id="title-intro" class="show">
+            <div class="center-header">
+                <h1>Coding Quiz Challenge</h1>
+            </div>
+            <div>
+                <p>Welcome to the coding challenge quiz. You will have 75 seconds to answer the questions and there will be a 'x' second pentaly for getting the answer wrong. Your high score will be equivalent to the number of seconds you have remaining after you have completed the quiz. Use the "Start Quiz" button below to begin!</p>
+            </div>
+            <div>
+                <button id="startButton">Start Quiz</button>
+            </div>
+        </section>
 
+        <!-- this is the section where the quiz content and questions will live -->
+        <section id="quiz-content" class="hide">
+            <div class="center-header">
+                <h1>Quiz Content</h1>
+            </div>
         </section>
         
-        <footer>
+        <!-- this is the section where the final score will live -->
+        <section id="final-score" class="hide">
+            <div class="center-header">
+                <h2>Thanks for playing!</h2>
+                <h3>Your final score is <span id="final-score">0</span></h3>
+                <br>
+                <label for="initials-area">Enter Initials:</label>
+                <input type="text" name="initials-area" maxlength="4" id="initials">
+                <button id="submit-button" type="submit">Submit</button>
 
+            </div>
+        </section>
+        <br>
+        <footer>
+            &copy;2020 by Jake William
         </footer>
     
     </div>
+
+    <script src="./assets/js/main.js"></script>
 </body>
 </html>
