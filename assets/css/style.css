@@ -8,8 +8,10 @@ header {
 	height: 50px;
 	padding: 10px;
 }
-header a {
+header div a {
 	font-size: larger;
+	text-decoration: none;
+	font-weight: bold;
 }
 .view-highscores {
 	display: flex;
@@ -56,13 +58,14 @@ div {
 /* STYLE THE SECTIONS ENDS */
 
 /* ----STYLE THE BUTTONS---- */
-button {
-	color: black;
-	background-color: rgb(197, 193, 193);
+.button {
+	color: whitesmoke;
+	background-color: rgb(72, 15, 148);
 	border: none;
 	border-radius: 10px;
 	padding: 10px 20px;
 	font-size: 16px;
+	margin: 10px;
 }
 
 #startButton {

@@ -19,7 +19,7 @@
 
             <!-- this is the timer element that will be used for the quiz -->
             <div class="timer">
-                Timer: <span id="time">0</span> 
+                <h3 id="time"></h3> 
             </div>
 
         </header>
@@ -34,7 +34,7 @@
                     <p>Welcome to the coding challenge quiz. You will have 75 seconds to answer the questions and there will be a 'x' second pentaly for getting the answer wrong. Your high score will be equivalent to the number of seconds you have remaining after you have completed the quiz. Use the "Start Quiz" button below to begin!</p>
                 </div>
                 <div>
-                    <button id="start-button">Start Quiz</button>
+                    <button class="button" id="start-button">Start Quiz</button>
                 </div>
             </div>
         </section>
@@ -42,10 +42,17 @@
         <!-- this is the section where the quiz content and questions will live -->
         <section id="quiz-content" class="hide">
             <div class="center-content">
+                <!-- title of the section for each question -->
                 <div class="center-header">
                     <h1>Quiz Content</h1>
                 </div>
-                <div class="quiz-question"></div>
+                <!-- blank div to dynamically insert questions into -->
+                <div class="row" id="questions-container">
+                    <div class="questions" id="questions"></div>
+                    <div class="potential-answers" id="potential-answers"></div>
+                </div>
+                <!-- blank div to dynamically provide the right/wrong feedback -->
+                <div class="row" id="feedback-container"></div>
             </div>
         </section>
         
