@@ -46,8 +46,8 @@ var message = "Time's up!";
 //this is used to set the question index to pull the first question from the questions array
 var questionNumber = 0;
 //keep track of the time
-/* var timeLeft = questions.length * 15; */
-var timeLeft = 5;
+var timeLeft = questions.length * 15;
+/* var timeLeft = 5; */
 var timerID;
 var btnIdEl = 0;
 
@@ -94,9 +94,9 @@ function genQuestion() {
 	//create a function to check the answer
 	//deduct seconds if wrong answer
 	//move to new question if the answer is correct
-	
+
 	//clear the conent if the end user cycles through the quiz again
-	paCont.innerHTML = "";
+	paCont.innerHTML = '';
 
 	if (questionNumber > questions.length) {
 		endQuiz();
@@ -124,13 +124,23 @@ function genQuestion() {
 	}
 }
 
-function validate() {
-//create a function to end the quiz
+function validate(x) {
+	console.log(x.target);
 
-fCont.innerHTML = ""
-
-
-
+	fCont.innerHTML = '';
+	if (x.tartget.matches('.pabutton')) {
+		var selected = x.target.value;
+		console.log(x.target.value, 'value');
+	}
+	if (
+		questions[questionNumber].potentialAnswers !=
+		questions[questionNumber].correctAnswer
+	) {
+		timeLeft = timeLeft - 5;
+	} else {
+		/* cycle through to the next question */ questionNumber++;
+		genQuestion();
+	}
 }
 
 function endQuiz() {
@@ -147,3 +157,4 @@ function endQuiz() {
 
 //what are the button clicks doing?
 startBtn.addEventListener('click', startQuiz);
+paCont.addEventListener('click', validate);
