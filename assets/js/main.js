@@ -125,20 +125,30 @@ function genQuestion() {
 }
 
 function validate(x) {
-	console.log(x.target);
+	/* console.log(x.target); */
 
-	fCont.innerHTML = '';
-	if (x.tartget.matches('.pabutton')) {
-		var selected = x.target.value;
-		console.log(x.target.value, 'value');
-	}
-	if (
-		questions[questionNumber].potentialAnswers !=
-		questions[questionNumber].correctAnswer
-	) {
-		timeLeft = timeLeft - 5;
+	var userChoice = x.target.value;
+	var correctAnswer = questions[questionNumber].correctAnswer;
+
+	setTimeout(function () {
+		fCont.innerHTML = '';
+	}, 1000);
+
+	if (userChoice != correctAnswer) {
+		var incorrectMsg = document.createElement('h2');
+		incorrectMsg.className = 'incorrectmsg';
+		incorrectMsg.textContent = 'Sorry, that is incorrect!';
+		fCont.appendChild(incorrectMsg);
+		questionNumber++;
+		timeLeft -= 10;
+		genQuestion();
 	} else {
-		/* cycle through to the next question */ questionNumber++;
+		var correctMsg = document.createElement('h2');
+		correctMsg.className = 'correctmsg';
+		correctMsg.textContent = 'CORRECT!';
+		fCont.appendChild(correctMsg);
+		questionNumber++;
+		timeLeft += 5;
 		genQuestion();
 	}
 }
