@@ -62,10 +62,10 @@ var endGame = document.querySelector('#end-game');
 var qCont = document.querySelector('#questions');
 var paCont = document.querySelector('#potential-answers');
 var fCont = document.querySelector('#feedback-container');
-var highScore = document.querySelector('#final-score');
 var entInitials = document.querySelector('#initials');
 var sList = document.querySelector('#score-list');
 var hScore = document.querySelector('#highscore-display');
+var highScore = document.querySelector('#final-score');
 
 //my questions for the quiz as an object
 
@@ -97,20 +97,13 @@ function countdown() {
 
 //create a function ot generate the questions
 function genQuestion() {
-	//create a function to check the answer
-	//deduct seconds if wrong answer
-	//move to new question if the answer is correct
-
-	//clear the conent if the end user cycles through the quiz again
+	//clear the potential answer container if the end user cycles through the quiz again
 	paCont.innerHTML = '';
 
 	if (questionNumber > questions.length - 1) {
 		endQuiz();
 	} else {
 		qCont.innerHTML = questions[questionNumber].question;
-
-		//set this to an empty string so it clears when the genQuestion function runs from the start
-		paCont.innerHTML = '';
 		for (
 			var i = 0;
 			i < questions[questionNumber].potentialAnswers.length;
@@ -192,7 +185,6 @@ function endQuiz() {
 		scoreList.setAttribute('value', initials);
 		scoreList.textContent = initials + ' ' + highScores;
 		sList.appendChild(scoreList);
-
 		initialsId++;
 	}
 	subBtn.addEventListener('click', saveScore);
