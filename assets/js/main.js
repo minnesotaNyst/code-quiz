@@ -138,9 +138,13 @@ function validate(x) {
 		fCont.appendChild(incorrectMsg);
 		questionNumber++;
 		timeLeft -= 10;
-		setTimeout(function () {
-			genQuestion();
-		}, 1000);
+		if (timeLeft < 0) {
+			timeLeft = 0;
+		} else {
+			setTimeout(function () {
+				genQuestion();
+			}, 1000);
+		}
 	} else {
 		var correctMsg = document.createElement('h2');
 		correctMsg.className = 'correctmsg';
@@ -161,34 +165,33 @@ function endQuiz() {
 	endGame.setAttribute('class', 'show');
 	quizContent.setAttribute('class', 'hide');
 
-	highScore.innerHTML = 'score';
+	highScore.innerHTML = '';
 	highScore.textContent = timeLeft;
 	highScore = timeLeft;
-
-	function saveScore() {
-		var entInitials = document.getElementById('initials').value;
-		localStorage.setItem('initials', JSON.stringify(entInitials));
-		localStorage.setItem('highscore', JSON.stringify(highScore));
-
-		var highScores = JSON.parse(localStorage.getItem('highscore')) || [];
-		var initials = JSON.parse(localStorage.getItem('initials')) || [];
-
-		console.log(initials);
-		console.log(highScores);
-
-		var scoreList = document.createElement('li');
-		scoreList.className = 'userinitials';
-		scoreList.setAttribute('id', 'user-initials-' + initialsId);
-		scoreList.setAttribute('value', initials);
-		scoreList.textContent = initials + ' ' + highScores;
-		sList.appendChild(scoreList);
-		initialsId++;
-
-		window.location.href = './highscore.html';
-	}
-	subBtn.addEventListener('click', saveScore);
 }
 
-//what are the button clicks doing?
-startBtn.addEventListener('click', e => startQuiz(e.target));
+function saveScore() {
+	// get value of input box
+	var initials = entInitials.value.trim();
+	// make sure value wasn't empty
+	if (initials !== '') {
+		// get saved scores from localstorage, or if not any, set to empty array
+		var highscores =
+			JSON.parse(window.localStorage.getItem('highscores')) || [];
+		// format new score object for current user
+		var newScore = {
+			score: timeLeft,
+			initials: initials
+		};
+		// save to localstorage
+		highscores.push(newScore);
+		window.localStorage.setItem('highscores', JSON.stringify(highscores));
+		// redirect to next page
+		window.location.href = 'highscores.html';
+	}
+}
+
+//event listeners for the buttons (start quiz, answer selections, and submit)
+startBtn.addEventListener('click', startQuiz);
 paCont.addEventListener('click', validate);
+subBtn.addEventListener('click', saveScore);

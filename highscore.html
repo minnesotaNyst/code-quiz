@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>High Scores</title>
 </head>
 <body>
+    <!-- this is the section where the quiz content and questions will live -->
+    <section id="quiz-content" class="hide">
+        <div class="center-content">
+            <!-- title of the section for each question -->
+            <div class="center-header">
+                <h1>Quiz Content</h1>
+            </div>
+            <!-- blank div to dynamically insert questions into -->
+            <div class="row" id="questions-container">
+                <div class="questions" id="questions"></div>
+                <div class="potential-answers" id="potential-answers"></div>
+            </div>
+            <!-- blank div to dynamically provide the right/wrong feedback -->
+            <div class="row" id="feedback-container"></div>
+        </div>
+    </section>
+
+    <section id="title-intro" class="hide">
+        <div class="center-content">
+            <div class="center-header">
+                <h1>Coding Quiz Challenge</h1>
+            </div>
+            <div>
+                <p>Welcome to the coding challenge quiz. You will have 75 seconds to answer the questions and there will be a 10 second pentaly for getting the answer wrong. Your high score will be equivalent to the number of seconds you have remaining after you have completed the quiz. Use the "Start Quiz" button below to begin!</p>
+            </div>
+            <div>
+                <button class="button" id="start-button">Start Quiz</button>
+            </div>
+        </div>
+    </section>
+
      <!-- this is the section for the high score display -->
      <section id="highscore-display" class="show">
         <div class="center-content" id="posts">
@@ -25,6 +56,5 @@
     <footer>
         &copy;2020 by Jake William
     </footer>
-    <script src="./assets/js/main.js"></script>
-</body>
+    <script src="./assets/js/highscore.js"></script>
 </html>
