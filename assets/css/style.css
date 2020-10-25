@@ -33,6 +33,10 @@ section {
 	text-align: center;
 	height: 1000px;
 }
+section div a {
+	text-decoration: none;
+	color: whitesmoke;
+}
 .center-content {
 	background-color: whitesmoke;
 	border: solid 2px black;
@@ -43,7 +47,10 @@ section {
 	flex-wrap: wrap;
 }
 div {
-	margin: 10px;
+	margin: 18px;
+}
+section div p {
+	font-size: 18px;
 }
 
 .header-center {
@@ -54,6 +61,12 @@ div {
 }
 .show {
 	display: block;
+}
+label {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 18px;
+	padding: 10px 8px;
+	font-weight: bold;
 }
 /* STYLE THE SECTIONS ENDS */
 
@@ -71,4 +84,10 @@ div {
 #startButton {
 	display: block;
 	margin: 0 auto;
+}
+
+input {
+	border-radius: 10px;
+	padding: 10px 20px;
+	font-size: 16px;
 }

@@ -31,7 +31,7 @@ const questions = [
 			'function:myFunction()',
 			'function=myFunction()',
 			'function myFunction()',
-			'myFunction():function'
+			'myFunction()'
 		],
 		correctAnswer: 'myFunction()'
 	},
@@ -53,13 +53,18 @@ var btnIdEl = 0;
 
 //variables to reference (DOM)
 var startBtn = document.querySelector('#start-button');
+var subBtn = document.querySelector('#submit-button');
 var timeEl = document.querySelector('#time');
 var titleIntro = document.querySelector('#title-intro');
 var quizContent = document.querySelector('#quiz-content');
-var finalScore = document.querySelector('#final-score');
+var endGame = document.querySelector('#end-game');
 var qCont = document.querySelector('#questions');
 var paCont = document.querySelector('#potential-answers');
 var fCont = document.querySelector('#feedback-container');
+var highScore = document.querySelector('#final-score');
+var entInitials = document.querySelector('#initials');
+var sList = document.querySelector('#score-list');
+var hScore = document.querySelector('#highscore-display');
 
 //my questions for the quiz as an object
 
@@ -98,7 +103,7 @@ function genQuestion() {
 	//clear the conent if the end user cycles through the quiz again
 	paCont.innerHTML = '';
 
-	if (questionNumber > questions.length) {
+	if (questionNumber > questions.length - 1) {
 		endQuiz();
 	} else {
 		qCont.innerHTML = questions[questionNumber].question;
@@ -125,8 +130,6 @@ function genQuestion() {
 }
 
 function validate(x) {
-	/* console.log(x.target); */
-
 	var userChoice = x.target.value;
 	var correctAnswer = questions[questionNumber].correctAnswer;
 
@@ -141,7 +144,9 @@ function validate(x) {
 		fCont.appendChild(incorrectMsg);
 		questionNumber++;
 		timeLeft -= 10;
-		genQuestion();
+		setTimeout(function () {
+			genQuestion();
+		}, 1000);
 	} else {
 		var correctMsg = document.createElement('h2');
 		correctMsg.className = 'correctmsg';
@@ -149,21 +154,45 @@ function validate(x) {
 		fCont.appendChild(correctMsg);
 		questionNumber++;
 		timeLeft += 5;
-		genQuestion();
+		setTimeout(function () {
+			genQuestion();
+		}, 1000);
 	}
 }
 
 function endQuiz() {
-	//what should happen when the quiz ends?
-
-	//stop the time
 	clearInterval(timeLeft);
+	clearInterval(timerID);
 	timeEl.textContent = message;
-	finalScore.setAttribute('class', 'show');
+	endGame.setAttribute('class', 'show');
+	quizContent.setAttribute('class', 'hide');
 
-	//display final score screen
+	highScore.innerHTML = '';
+	highScore.textContent = timeLeft;
+	highScore = timeLeft;
+
+	function saveScore() {
+		var entInitials = document.getElementById('initials').value;
+		localStorage.setItem('initials', JSON.stringify(entInitials));
+		localStorage.setItem('highscore', JSON.stringify(highScore));
+
+		endGame.setAttribute('class', 'hide');
+		hScore.setAttribute('class', 'show');
+
+		var scoreList = document.createElement('li');
+		scoreList.className = 'userinitials';
+		scoreList.setAttribute('id', 'user-initials');
+		scoreList.setAttribute(
+			'value',
+			JSON.parse(localStorage.getItem('initials')) +
+				JSON.parse(localStorage.getItem('highscore'))
+		);
+		scoreList.textContent = JSON.parse(localStorage.getItem('initials')) + 
+		JSON.parse(localStorage.getItem('highscore'));
+		sList.appendChild(scoreList);
+	}
+	subBtn.addEventListener('click', saveScore);
 }
-//create a function to save the high scores
 
 //what are the button clicks doing?
 startBtn.addEventListener('click', startQuiz);
