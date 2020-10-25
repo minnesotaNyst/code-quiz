@@ -53,24 +53,24 @@ var initialsId = 0;
 var btnIdEl = 0;
 
 //variables to reference (DOM)
-var startBtn = document.querySelector('#start-button');
-var subBtn = document.querySelector('#submit-button');
-var timeEl = document.querySelector('#time');
 var titleIntro = document.querySelector('#title-intro');
 var quizContent = document.querySelector('#quiz-content');
 var endGame = document.querySelector('#end-game');
+var hScore = document.querySelector('#highscore-display');
+var startBtn = document.querySelector('#start-button');
+var subBtn = document.querySelector('#submit-button');
+var timeEl = document.querySelector('#time');
 var qCont = document.querySelector('#questions');
 var paCont = document.querySelector('#potential-answers');
 var fCont = document.querySelector('#feedback-container');
 var entInitials = document.querySelector('#initials');
 var sList = document.querySelector('#score-list');
-var hScore = document.querySelector('#highscore-display');
 var highScore = document.querySelector('#final-score');
 
 //my questions for the quiz as an object
 
 //create a function to start the game
-function startQuiz() {
+function startQuiz(e) {
 	//hide the intro
 	titleIntro.setAttribute('class', 'hide');
 
@@ -161,7 +161,7 @@ function endQuiz() {
 	endGame.setAttribute('class', 'show');
 	quizContent.setAttribute('class', 'hide');
 
-	highScore.innerHTML = '';
+	highScore.innerHTML = 'score';
 	highScore.textContent = timeLeft;
 	highScore = timeLeft;
 
@@ -169,9 +169,6 @@ function endQuiz() {
 		var entInitials = document.getElementById('initials').value;
 		localStorage.setItem('initials', JSON.stringify(entInitials));
 		localStorage.setItem('highscore', JSON.stringify(highScore));
-
-		endGame.setAttribute('class', 'hide');
-		hScore.setAttribute('class', 'show');
 
 		var highScores = JSON.parse(localStorage.getItem('highscore')) || [];
 		var initials = JSON.parse(localStorage.getItem('initials')) || [];
@@ -186,10 +183,12 @@ function endQuiz() {
 		scoreList.textContent = initials + ' ' + highScores;
 		sList.appendChild(scoreList);
 		initialsId++;
+
+		window.location.href = './highscore.html';
 	}
 	subBtn.addEventListener('click', saveScore);
 }
 
 //what are the button clicks doing?
-startBtn.addEventListener('click', startQuiz);
+startBtn.addEventListener('click', e => startQuiz(e.target));
 paCont.addEventListener('click', validate);

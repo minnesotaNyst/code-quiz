@@ -8,10 +8,9 @@ header {
 	height: 50px;
 	padding: 10px;
 }
-header div a {
-	font-size: larger;
+header div button a {
 	text-decoration: none;
-	font-weight: bold;
+	color: whitesmoke;
 }
 .view-highscores {
 	display: flex;
