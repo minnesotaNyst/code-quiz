@@ -18,15 +18,15 @@ const questions = [
 	{
 		question: 'How do you write "Hello World" in an alert box?',
 		potentialAnswers: [
-			'alert("Hello World);',
+			'alert("Hello World");',
 			'alertBox("Hello World);',
 			'window("Hello World);',
 			'msgBox("Hello World);'
 		],
-		correctAnswer: 'alert("Hello World);'
+		correctAnswer: 'alert("Hello World");'
 	},
 	{
-		question: 'How do you create a function?',
+		question: 'How do you call a function?',
 		potentialAnswers: [
 			'function:myFunction()',
 			'function=myFunction()',
