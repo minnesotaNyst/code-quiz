@@ -49,6 +49,7 @@ var questionNumber = 0;
 var timeLeft = questions.length * 15;
 /* var timeLeft = 5; */
 var timerID;
+var initialsId = 0;
 var btnIdEl = 0;
 
 //variables to reference (DOM)
@@ -179,17 +180,20 @@ function endQuiz() {
 		endGame.setAttribute('class', 'hide');
 		hScore.setAttribute('class', 'show');
 
+		var highScores = JSON.parse(localStorage.getItem('highscore')) || [];
+		var initials = JSON.parse(localStorage.getItem('initials')) || [];
+
+		console.log(initials);
+		console.log(highScores);
+
 		var scoreList = document.createElement('li');
 		scoreList.className = 'userinitials';
-		scoreList.setAttribute('id', 'user-initials');
-		scoreList.setAttribute(
-			'value',
-			JSON.parse(localStorage.getItem('initials')) +
-				JSON.parse(localStorage.getItem('highscore'))
-		);
-		scoreList.textContent = JSON.parse(localStorage.getItem('initials')) + 
-		JSON.parse(localStorage.getItem('highscore'));
+		scoreList.setAttribute('id', 'user-initials-' + initialsId);
+		scoreList.setAttribute('value', initials);
+		scoreList.textContent = initials + ' ' + highScores;
 		sList.appendChild(scoreList);
+
+		initialsId++;
 	}
 	subBtn.addEventListener('click', saveScore);
 }
