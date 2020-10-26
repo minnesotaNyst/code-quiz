@@ -64,7 +64,7 @@ var qCont = document.querySelector('#questions');
 var paCont = document.querySelector('#potential-answers');
 var fCont = document.querySelector('#feedback-container');
 var entInitials = document.querySelector('#initials');
-var sList = document.querySelector('#score-list');
+
 var highScore = document.querySelector('#final-score');
 
 //function to start the game

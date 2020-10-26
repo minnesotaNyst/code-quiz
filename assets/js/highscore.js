@@ -5,13 +5,13 @@ function postScore() {
 	highscores.sort(function (a, b) {
 		return b.score - a.score;
 	});
-	highscores.forEach(function (score) {
+	highscores.forEach(function (highscores) {
 		// create li tag for each high score
-		var liTag = document.createElement('li');
-		liTag.textContent = score.initials + ' - ' + score.score;
+		var list = document.createElement('li');
+		list.textContent = highscores.initials + ' - ' + highscores.score;
 		// display on page
-		var olEl = document.getElementById('highscores');
-		olEl.appendChild(liTag);
+		var sList = document.querySelector('#score-list');
+		sList.appendChild(list);
 	});
 }
 function clearHighscores() {
