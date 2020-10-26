@@ -1,24 +1,23 @@
-/* var sList = document.querySelector('#score-list');
-var initials = document.getElementById('initials').value;
-
-function postScore(){
-	const maxScores = 5;
-	localStorage.setItem('finalScore', JSON.stringify(scoreObj));
-
-	finalScore.push(scoreObj);
-	finalScore.sort((a, b) => b.score - a.score);
-	finalScore.splice(maxScores);
-
-	localStorage.setItem('initials', JSON.stringify(initials));
-	localStorage.setItem('highscore', JSON.stringify(finalScore));
-
-	var scoreList = document.createElement('li');
-	scoreList.className = 'userinitials';
-	scoreList.setAttribute('id', 'user-initials-' + initialsId);
-	scoreList.setAttribute('value', initials);
-	scoreList.textContent = initials + ' ' + highScores;
-	sList.appendChild(scoreList);
-	initialsId++;
+function postScore() {
+	// either get scores from localstorage or set to empty array
+	var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+	// sort highscores by score property in descending order
+	highscores.sort(function (a, b) {
+		return b.score - a.score;
+	});
+	highscores.forEach(function (score) {
+		// create li tag for each high score
+		var liTag = document.createElement('li');
+		liTag.textContent = score.initials + ' - ' + score.score;
+		// display on page
+		var olEl = document.getElementById('highscores');
+		olEl.appendChild(liTag);
+	});
 }
-
-postScore(); */
+function clearHighscores() {
+	window.localStorage.removeItem('highscores');
+	window.location.reload();
+}
+document.getElementById('clear-btn').onclick = clearHighscores;
+// run function when page loads
+postScore();

@@ -47,8 +47,8 @@ var message = "Time's up!";
 var questionNumber = 0;
 //keep track of the time
 var timeLeft = questions.length * 15;
-/* var timeLeft = 5; */
 var timerID;
+//track added html elements with id counter
 var initialsId = 0;
 var btnIdEl = 0;
 
@@ -67,10 +67,8 @@ var entInitials = document.querySelector('#initials');
 var sList = document.querySelector('#score-list');
 var highScore = document.querySelector('#final-score');
 
-//my questions for the quiz as an object
-
-//create a function to start the game
-function startQuiz(e) {
+//function to start the game
+function startQuiz() {
 	//hide the intro
 	titleIntro.setAttribute('class', 'hide');
 
@@ -84,8 +82,7 @@ function startQuiz(e) {
 	timeEl.textContent = timeLeft;
 	genQuestion();
 }
-
-//create a function to take seconds off the clock
+//function to take seconds off the clock
 function countdown() {
 	timeLeft--;
 	timeEl.textContent = timeLeft;
@@ -94,8 +91,7 @@ function countdown() {
 		endQuiz();
 	}
 }
-
-//create a function ot generate the questions
+//function to generate the questions
 function genQuestion() {
 	//clear the potential answer container if the end user cycles through the quiz again
 	paCont.innerHTML = '';
@@ -122,7 +118,7 @@ function genQuestion() {
 		}
 	}
 }
-
+//function to validate the response from the end user
 function validate(x) {
 	var userChoice = x.target.value;
 	var correctAnswer = questions[questionNumber].correctAnswer;
@@ -157,7 +153,7 @@ function validate(x) {
 		}, 1000);
 	}
 }
-
+//function to end the quiz
 function endQuiz() {
 	clearInterval(timeLeft);
 	clearInterval(timerID);
@@ -169,7 +165,7 @@ function endQuiz() {
 	highScore.textContent = timeLeft;
 	highScore = timeLeft;
 }
-
+//function to save the score
 function saveScore() {
 	// get value of input box
 	var initials = entInitials.value.trim();
@@ -187,7 +183,7 @@ function saveScore() {
 		highscores.push(newScore);
 		window.localStorage.setItem('highscores', JSON.stringify(highscores));
 		// redirect to next page
-		window.location.href = 'highscores.html';
+		window.location.href = 'highscore.html';
 	}
 }
 
